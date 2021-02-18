@@ -37,13 +37,13 @@ RUN cd /pytorch \
     && python3 setup.py build \
     && python3 setup.py bdist_wheel
 
-RUN git clone -b v0.8.2 https://github.com/pytorch/vision.git
+RUN git clone -b ${VISIONVER} https://github.com/pytorch/vision.git
 RUN cd /vision \
     && pip3 install /pytorch/dist/*.whl \
     && python3 setup.py build \
     && python3 setup.py bdist_wheel
 
-RUN git clone -b v0.7.2 https://github.com/pytorch/audio.git
+RUN git clone -b ${AUDIOVER} https://github.com/pytorch/audio.git
 RUN cd /audio \
     && apt-get install -y sox libsox-dev \
     && python3 setup.py build \
