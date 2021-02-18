@@ -33,6 +33,8 @@ RUN cd /pytorch \
     && sed -i -e "/^#ifndef THRUST_IGNORE_CUB_VERSION_CHECK$/i #define THRUST_IGNORE_CUB_VERSION_CHECK" \
                  /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/config.h \
     && cat /usr/local/cuda/targets/x86_64-linux/include/thrust/system/cuda/config.h \
+    && sed -i -e "/^if(DEFINED GLIBCXX_USE_CXX11_ABI)/i set(GLIBCXX_USE_CXX11_ABI 1)" \
+                 CMakeLists.txt \
     && pip3 install -r requirements.txt \
     && python3 setup.py build \
     && python3 setup.py bdist_wheel
