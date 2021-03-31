@@ -119,13 +119,13 @@ You can customize the Dockerfile to build and run your own container images on y
 $ version=1.7.1
 $ git clone -b ${version} https://github.com/PINTO0309/PyTorch-build.git
 $ cd PyTorch-build
-$ docker build -t pinto0309/pytorch-build:latest .
+$ docker build -t pinto0309/pytorch-build:11.0.3-cudnn8-devel-ubuntu18.04 .
 
 $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:latest bash
+    pinto0309/pytorch-build:11.0.3-cudnn8-devel-ubuntu18.04 bash
 ```
 
 ## 4. Usage - Docker Pull / Run
@@ -135,5 +135,5 @@ $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:latest bash
+    pinto0309/pytorch-build:11.0.3-cudnn8-devel-ubuntu18.04 bash
 ```

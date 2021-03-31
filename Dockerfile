@@ -1,8 +1,10 @@
-FROM pinto0309/cuda:11.0.3-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu18.04
 
 ENV TORCHVER=v1.7.1
 ENV VISIONVER=v0.8.2
 ENV AUDIOVER=v0.7.2
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies (1)
 RUN apt-get update && apt-get install -y \
