@@ -3,12 +3,12 @@ Provide Docker build sequences of PyTorch for various environments.
 **https://github.com/pytorch/pytorch**
 
 ## 1. Docker Image Environment
-- Ubuntu 18.04 x86_64
-- CUDA 11.0
-- cuDNN 8.0
-- PyTorch v1.7.1 (Build from source code. It will be downloaded automatically during docker build.)
-- TorchVision v0.8.2
-- TorchAudio v0.7.2
+- Ubuntu 20.04 x86_64
+- CUDA 11.2
+- cuDNN 8.1
+- PyTorch v1.8.1 (Build from source code. It will be downloaded automatically during docker build.)
+- TorchVision v0.9.1
+- TorchAudio v0.8.1
 
 ## 2. Default build parameters
 
@@ -116,16 +116,16 @@ Provide Docker build sequences of PyTorch for various environments.
 ## 3. Usage - Docker Build
 You can customize the Dockerfile to build and run your own container images on your own.
 ```bash
-$ version=1.7.1
+$ version=1.8.1
 $ git clone -b ${version} https://github.com/PINTO0309/PyTorch-build.git
 $ cd PyTorch-build
-$ docker build -t pinto0309/pytorch-build:latest .
+$ docker build -t pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 .
 
 $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:latest bash
+    pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 bash
 ```
 
 ## 4. Usage - Docker Pull / Run
@@ -135,5 +135,5 @@ $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:latest bash
+    pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 bash
 ```

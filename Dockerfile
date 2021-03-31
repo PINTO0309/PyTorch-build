@@ -1,8 +1,10 @@
-FROM pinto0309/cuda:11.0.3-cudnn8-devel-ubuntu18.04
+FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
 
-ENV TORCHVER=v1.7.1
-ENV VISIONVER=v0.8.2
-ENV AUDIOVER=v0.7.2
+ENV TORCHVER=v1.8.1
+ENV VISIONVER=v0.9.1
+ENV AUDIOVER=v0.8.1
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies (1)
 RUN apt-get update && apt-get install -y \
@@ -41,12 +43,14 @@ RUN cd /pytorch \
 
 RUN git clone -b ${VISIONVER} https://github.com/pytorch/vision.git
 RUN cd /vision \
+    && git submodule update --init --recursive \
     && pip3 install /pytorch/dist/*.whl \
     && python3 setup.py build \
     && python3 setup.py bdist_wheel
 
 RUN git clone -b ${AUDIOVER} https://github.com/pytorch/audio.git
 RUN cd /audio \
+    && git submodule update --init --recursive \
     && apt-get install -y sox libsox-dev \
     && python3 setup.py build \
     && python3 setup.py bdist_wheel
