@@ -96,7 +96,7 @@ Provide Docker build sequences of PyTorch for various environments.
 --   USE_MKLDNN            : ON
 --   USE_MKLDNN_CBLAS      : OFF
 --   USE_NCCL              : ON
---     USE_SYSTEM_NCCL     : OFF
+--     USE_SYSTEM_NCCL     : ON
 --   USE_NNPACK            : ON
 --   USE_NUMPY             : ON
 --   USE_OBSERVERS         : ON
