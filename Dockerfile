@@ -38,7 +38,7 @@ RUN cd /pytorch \
     && sed -i -e "/^if(DEFINED GLIBCXX_USE_CXX11_ABI)/i set(GLIBCXX_USE_CXX11_ABI 1)" \
                  CMakeLists.txt \
     && pip3 install -r requirements.txt \
-    && USE_SYSTEM_NCCL=ON python3 setup.py build \
+    && USE_NCCL=OFF python3 setup.py build \
     && python3 setup.py bdist_wheel
 
 RUN git clone -b ${VISIONVER} https://github.com/pytorch/vision.git
