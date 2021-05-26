@@ -1,11 +1,11 @@
 # PyTorch-build
-Provide Docker build sequences of PyTorch for various environments.  
+Provide Docker build sequences of PyTorch for various environments.
 **https://github.com/pytorch/pytorch**
 
 ## 1. Docker Image Environment
 - Ubuntu 20.04 x86_64
-- CUDA 11.2
-- cuDNN 8.1
+- CUDA 11.3
+- cuDNN 8.2
 - PyTorch v1.8.1 (Build from source code. It will be downloaded automatically during docker build.)
 - TorchVision v0.9.1
 - TorchAudio v0.8.1
@@ -13,7 +13,7 @@ Provide Docker build sequences of PyTorch for various environments.
 ## 2. Default build parameters
 
 ```
--- 
+--
 -- ******** Summary ********
 -- General:
 --   CMake version         : 3.18.4
@@ -25,9 +25,9 @@ Provide Docker build sequences of PyTorch for various environments.
 --   CXX flags             :  -D_GLIBCXX_USE_CXX11_ABI=1 -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow
 --   Build type            : Release
 --   Compile definitions   : ONNX_ML=1;ONNXIFI_ENABLE_EXT=1;ONNX_NAMESPACE=onnx_torch;HAVE_MMAP=1;_FILE_OFFSET_BITS=64;HAVE_SHM_OPEN=1;HAVE_SHM_UNLINK=1;HAVE_MALLOC_USABLE_SIZE=1;USE_EXTERNAL_MZCRC;MINIZ_DISABLE_ZIP_READER_CRC32_CHECKS
---   CMAKE_PREFIX_PATH     : /usr/lib/python3/dist-packages;/usr/local/cuda
+--   CMAKE_PREFIX_PATH     : /usr/lib/python3/dist-packages;/usr/local/cuda;/usr/local/cuda
 --   CMAKE_INSTALL_PREFIX  : /pytorch/torch
--- 
+--
 --   TORCH_VERSION         : 1.8.0
 --   CAFFE2_VERSION        : 1.8.0
 --   BUILD_CAFFE2          : ON
@@ -51,7 +51,7 @@ Provide Docker build sequences of PyTorch for various environments.
 --   BUILD_TEST            : True
 --   BUILD_JNI             : OFF
 --   BUILD_MOBILE_AUTOGRAD : OFF
---   INTERN_BUILD_MOBILE   : 
+--   INTERN_BUILD_MOBILE   :
 --   USE_BLAS              : 1
 --     BLAS                : generic
 --   USE_LAPACK            : 1
@@ -62,8 +62,8 @@ Provide Docker build sequences of PyTorch for various environments.
 --     Split CUDA          : OFF
 --     CUDA static link    : OFF
 --     USE_CUDNN           : ON
---     CUDA version        : 11.2
---     cuDNN version       : 8.1.1
+--     CUDA version        : 11.3
+--     cuDNN version       : 8.2.0
 --     CUDA root directory : /usr/local/cuda
 --     CUDA library        : /usr/local/cuda/lib64/stubs/libcuda.so
 --     cudart library      : /usr/local/cuda/lib64/libcudart.so
@@ -129,13 +129,13 @@ You can customize the Dockerfile to build and run your own container images on y
 $ version=1.8.1
 $ git clone -b ${version} https://github.com/PINTO0309/PyTorch-build.git
 $ cd PyTorch-build
-$ docker build -t pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 .
+$ docker build -t pinto0309/pytorch-build:11.3.0-cudnn8-devel-ubuntu20.04 .
 
 $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 bash
+    pinto0309/pytorch-build:11.3.0-cudnn8-devel-ubuntu20.04 bash
 ```
 
 ## 4. Usage - Docker Pull / Run
@@ -145,5 +145,5 @@ $ docker run --gpus all -it --rm \
     -v `pwd`:/workspace \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
-    pinto0309/pytorch-build:11.2.2-cudnn8-devel-ubuntu20.04 bash
+    pinto0309/pytorch-build:11.3.0-cudnn8-devel-ubuntu20.04 bash
 ```
