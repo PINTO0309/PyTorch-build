@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.2.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04
 
 ENV TORCHVER=v1.8.1
 ENV VISIONVER=v0.9.1
